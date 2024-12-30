@@ -1,6 +1,9 @@
+import 'package:x_tracker/app/money_view_app/views/add_form.dart';
+
 import 'exports.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
                 surfaceTintColor: Colors.transparent,
               ),
             ),
-            home: HomeScreen(),
+            home: AddFormScreen() ?? HomeScreen(),
           );
         });
   }

@@ -13,6 +13,9 @@ class CustomTextFormField extends StatelessWidget {
   final Icon? prefixIcon;
   final Icon? suffixIcon;
   final VoidCallback? onTap;
+  final int? minLine;
+  final int? maxLine;
+  final int? maxLength;
 
   const CustomTextFormField({
     Key? key,
@@ -27,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.readOnly = false,
     this.onTap,
+    this.minLine,
+    this.maxLine, this.maxLength,
   }) : super(key: key);
 
   @override
@@ -42,17 +47,35 @@ class CustomTextFormField extends StatelessWidget {
         onChanged: onChanged,
         readOnly: readOnly,
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        minLines: minLine,
+        maxLines: maxLine,
+        maxLength: maxLength,
+        buildCounter: (_, {required currentLength, required isFocused, maxLength}) {
+          return null; // Hide the counter
+        },
         decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(AppDimensions.margin10),
+          isCollapsed: true,
+
+          constraints: BoxConstraints(minHeight: AppDimensions.height30, maxHeight: AppDimensions.height30 * 2),
+          contentPadding: EdgeInsets.all(AppDimensions.margin10),
           hintText: hintText,
           labelText: labelText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppDimensions.radius10),
-          ),
+          hintStyle: TextStyle(color: Colors.grey, fontSize: AppDimensions.font15),
+          border: inputBorder(),
+          enabledBorder: inputBorder(),
+          errorBorder: inputBorder(),
+          disabledBorder: inputBorder(),
+          focusedBorder: inputBorder(),
+          focusedErrorBorder: inputBorder(),
         ),
       ),
     );
   }
 }
+
+InputBorder inputBorder() => OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(AppDimensions.radius10),
+    );

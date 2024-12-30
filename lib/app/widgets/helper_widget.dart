@@ -11,14 +11,14 @@ Widget spacerWidth() => SizedBox(
       width: AppDimensions.width10,
     );
 
-Widget customBtn({onTap, btnTxt}) => GestureDetector(
+Widget customBtn({onTap, btnTxt, btnClr}) => GestureDetector(
       onTap: onTap,
       child: Container(
           alignment: Alignment.center,
           width: double.infinity,
           padding: EdgeInsets.all(AppDimensions.margin10),
-          decoration:
-              BoxDecoration(color: AppColors.success, borderRadius: BorderRadius.circular(AppDimensions.radius10)),
+          decoration: BoxDecoration(
+              color: btnClr ?? AppColors.success, borderRadius: BorderRadius.circular(AppDimensions.radius10)),
           child: Text(
             btnTxt ?? "Button Text",
             style: const TextStyle(color: AppColors.white),

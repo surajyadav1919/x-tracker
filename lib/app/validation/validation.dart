@@ -5,6 +5,14 @@ class Validation {
     return null;
   }
 
+  static String? validateField(String? value, title) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a $title';
+    } else {
+      return null;
+    }
+  }
+
   static String? validateTitle(String? value) {
     if (value == null || value.isEmpty) return 'Please enter a title';
     return null;
